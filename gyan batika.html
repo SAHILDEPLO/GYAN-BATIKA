@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gyan Batima Shikha Sadan - Result Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f6f7;
+            padding: 30px;
+            text-align: center;
+        }
+        h1 {
+            color: #1a5276;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+        .not-found {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gyan Batima Shikha Sadan</h1>
+    <h2>Student Result Checker</h2>
+    <input type="text" id="input" placeholder="Enter Roll No. or Name" />
+    <br>
+    <button onclick="checkResult()">Check Result</button>
+    <div id="output" class="result"></div>
+
+    <script>
+        const students = [
+            { roll: "01", name: "Aayush Sharma", marks: 88 },
+            { roll: "02", name: "Sita Karki", marks: 92 },
+            { roll: "03", name: "Roshan Yadav", marks: 75 },
+            { roll: "04", name: "Anisha Bhandari", marks: 81 },
+            { roll: "05", name: "Manoj Thapa", marks: 67 },
+            { roll: "06", name: "Sahid Ansari", marks: 89 },
+            { roll: "07", name: "Pratiksha Adhikari", marks: 94 },
+            { roll: "08", name: "Ramesh Sah", marks: 58 },
+            { roll: "09", name: "Kritika Kumari", marks: 73 },
+            { roll: "10", name: "Deepak Mahato", marks: 86 },
+        ];
+
+        function checkResult() {
+            const input = document.getElementById("input").value.trim().toLowerCase();
+            const result = students.find(student => 
+                student.roll === input || student.name.toLowerCase() === input
+            );
+
+            const output = document.getElementById("output");
+            if (result) {
+                output.innerHTML = `<strong>Name:</strong> ${result.name}<br>
+                                    <strong>Roll No:</strong> ${result.roll}<br>
+                                    <strong>Marks:</strong> ${result.marks}/100`;
+                output.classList.remove("not-found");
+            } else {
+                output.innerHTML = "No result found. Please check the input.";
+                output.classList.add("not-found");
+            }
+        }
+    </script>
+</body>
+</html>
